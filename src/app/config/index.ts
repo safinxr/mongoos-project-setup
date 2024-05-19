@@ -1,9 +1,8 @@
-import dotenv from "dotenv"
-import path from "path"
+import "dotenv/config";
 
-dotenv.config({ path: path.join((process.cwd(), ".env")) })
+console.log(process.env.PORT);
 
-export default  {
-    port: process.env.PORT,
-    database_url:process.env.DATABASE_URL
-}
+export default {
+  port: process.env.PORT,
+  mongodb_url: process.env.MONGODB_URL,
+};
