@@ -1,34 +1,38 @@
 import { Schema, model } from "mongoose";
-import { Guardian, LocalGuardian, Student, UserName } from "./student.interface";
-
+import {
+  Guardian,
+  LocalGuardian,
+  Student,
+  UserName,
+} from "./student.interface";
 
 // creating Schema
 const userNameSchema = new Schema<UserName>({
-    fastName: { type: String, required: true },
-    middleName: { type: String },
-    lastName: { type: String, required: true },
-  })
+  fastName: { type: String, required: true },
+  middleName: { type: String },
+  lastName: { type: String, required: true },
+});
 
 const guardianSchema = new Schema<Guardian>({
-    fatherName: { type: String, required: true },
-    fatherOccupation: { type: String, required: true },
-    fatherContactNO: { type: String, required: true },
-    motherName: { type: String, required: true },
-    motherOccupation: { type: String, required: true },
-    motherContactNO: { type: String, required: true },
-  })
+  fatherName: { type: String, required: true },
+  fatherOccupation: { type: String, required: true },
+  fatherContactNO: { type: String, required: true },
+  motherName: { type: String, required: true },
+  motherOccupation: { type: String, required: true },
+  motherContactNO: { type: String, required: true },
+});
 
 const localGuardian = new Schema<LocalGuardian>({
-    name: { type: String, required: true },
-    occupation: { type: String, required: true },
-    contactNO: { type: String, required: true },
-    address: { type: String, required: true },
-  })
+  name: { type: String, required: true },
+  occupation: { type: String, required: true },
+  contactNO: { type: String, required: true },
+  address: { type: String, required: true },
+});
 
 const studentSchema = new Schema<Student>({
   id: { type: String },
 
-  name:userNameSchema ,
+  name: userNameSchema,
   gender: ["male", "female"],
   dateOfBirth: { type: String },
   email: { type: String, required: true },

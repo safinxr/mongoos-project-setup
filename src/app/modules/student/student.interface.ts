@@ -17,12 +17,12 @@ export type LocalGuardian = {
   name: string;
   occupation: string;
   contactNO: string;
-  address:string;
+  address: string;
 };
 export type Student = {
   id: string;
   isActive: "active" | "block";
-  profileImg?:string;
+  profileImg?: string;
   name: UserName;
   gender: "male" | "female";
   dateOfBirth: string;
@@ -33,6 +33,5 @@ export type Student = {
   presentAddress: string;
   permanentAddress: string;
   guardian: Guardian;
-  localGuardian:LocalGuardian;
-  
+  localGuardian: LocalGuardian;
 };

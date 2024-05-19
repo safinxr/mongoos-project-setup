@@ -3,7 +3,6 @@ import config from "./app/config";
 import mongoose from "mongoose";
 import "dotenv/config";
 
-
 async function main() {
   try {
     await mongoose.connect(config.mongodb_url as string);
