@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { Guardian, LocalGuardian, Student, UserName } from "./student/student.interface";
+import { Guardian, LocalGuardian, Student, UserName } from "./student.interface";
 
 
 // creating Schema
