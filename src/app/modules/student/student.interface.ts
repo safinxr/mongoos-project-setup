@@ -1,6 +1,8 @@
+import { promises } from "dns";
+
 export type UserName = {
   fastName: string;
-  middleName: string;
+  middleName?: string;
   lastName: string;
 };
 
@@ -24,7 +26,7 @@ export type Student = {
   isActive: "active" | "block";
   profileImg?: string;
   name: UserName;
-  gender: "male" | "female";
+  gender: "male" | "female"|"other";
   dateOfBirth: string;
   email: string;
   contactNO: string;
@@ -35,3 +37,8 @@ export type Student = {
   guardian: Guardian;
   localGuardian: LocalGuardian;
 };
+
+
+export type studentMethod = {
+  isUserExist (id:string): Promise<Student>
+}
