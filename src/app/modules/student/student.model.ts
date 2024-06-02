@@ -64,6 +64,12 @@ const studentSchema = new Schema<Student>({
     required: [true, "Student ID is required"],
     unique: true,
   },
+  user: {
+    type: Schema.Types.ObjectId,
+    required: [true, "User ID is required"],
+    unique: true,
+    ref:"userModel",
+  },
   name: {
     type: userNameSchema,
     required: [true, "Student's name is required"],
@@ -78,10 +84,10 @@ const studentSchema = new Schema<Student>({
     type: String,
     required: [true, "Email is required"],
     unique: true,
-    validate:{
-      validator:(value:string)=>validator.isEmail(value),
-      message:"not an email"
-    }
+    validate: {
+      validator: (value: string) => validator.isEmail(value),
+      message: "not an email",
+    },
   },
   contactNo: {
     type: String,
@@ -113,12 +119,11 @@ const studentSchema = new Schema<Student>({
     type: localGuardianSchema,
     required: [true, "Local guardian information is required"],
   },
-  isActive: {
-    type: String,
-    enum: ["active", "block"],
-    required: [true, "Status is required"],
+  profileImage: { type: String },
+  isDeleted: {
+    type: Boolean,
+    default: false,
   },
-  profileImg: { type: String },
 });
 
 // creating module

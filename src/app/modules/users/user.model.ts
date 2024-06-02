@@ -1,5 +1,8 @@
-import { Schema, model, connect } from "mongoose";
+import { Schema, model } from "mongoose";
 import { TUser } from "./user.interface";
+import bcrypt from "bcrypt";
+import config from "../../config";
+import { number } from "joi";
 
 const userSchema = new Schema<TUser>(
   {
@@ -22,7 +25,7 @@ const userSchema = new Schema<TUser>(
     status: {
       type: String,
       enum: ["in-progress", "blocked"],
-      default:"in-progress",
+      default: "in-progress",
     },
     isDeleted: {
       type: Boolean,
@@ -34,5 +37,16 @@ const userSchema = new Schema<TUser>(
   }
 );
 
+userSchema.pre("save", async function (next) {
+  this.password = await bcrypt.hash(
+    this.password,
+    Number(config.bcrypt_sult_rounds)
+  );
+  next();
+});
 
-export const User = model<TUser>("User", userSchema);
+userSchema.post("save", function () {
+  console.log(this, "After saving the data");
+});
+
+export const UserModel = model<TUser>("User", userSchema);

@@ -1,4 +1,4 @@
-import { promises } from "dns";
+import { Types } from "mongoose";
 
 export type UserName = {
   firstName: string;
@@ -23,11 +23,10 @@ export type LocalGuardian = {
 };
 export type Student = {
   id: string;
-  isActive: "active" | "block";
-  profileImg?: string;
+  user: Types.ObjectId
   name: UserName;
-  gender: "male" | "female"|"other";
-  dateOfBirth: string;
+  gender: "male" | "female" | "other";
+  dateOfBirth?: string;
   email: string;
   contactNo: string;
   emergencyContactNo: string;
@@ -36,9 +35,10 @@ export type Student = {
   permanentAddress: string;
   guardian: Guardian;
   localGuardian: LocalGuardian;
+  profileImage?: string;
+  isDeleted?:Boolean;
 };
 
-
 export type studentMethod = {
-  isUserExist (id:string): Promise<Student>
-}
+  isUserExist(id: string): Promise<Student>;
+};

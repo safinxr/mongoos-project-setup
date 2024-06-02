@@ -40,8 +40,8 @@ const studentValidationSchema = z.object({
   permanentAddress: z.string().min(1, "Permanent address is required"),
   guardian: guardianValidationSchema,
   localGuardian: localGuardianValidationSchema,
-  isActive: z.enum(["active", "block"]),
-  profileImg: z.string().optional(),
+  isActive: z.boolean().optional(),
+  profileImage: z.string().optional(),
 });
 
 export default studentValidationSchema;
