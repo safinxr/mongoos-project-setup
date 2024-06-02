@@ -1,7 +1,7 @@
 import { promises } from "dns";
 
 export type UserName = {
-  fastName: string;
+  firstName: string;
   middleName?: string;
   lastName: string;
 };
@@ -9,16 +9,16 @@ export type UserName = {
 export type Guardian = {
   fatherName: string;
   fatherOccupation: string;
-  fatherContactNO: string;
+  fatherContactNo: string;
   motherName: string;
   motherOccupation: string;
-  motherContactNO: string;
+  motherContactNo: string;
 };
 
 export type LocalGuardian = {
   name: string;
   occupation: string;
-  contactNO: string;
+  contactNo: string;
   address: string;
 };
 export type Student = {
@@ -29,8 +29,8 @@ export type Student = {
   gender: "male" | "female"|"other";
   dateOfBirth: string;
   email: string;
-  contactNO: string;
-  emergencyContactNO: string;
+  contactNo: string;
+  emergencyContactNo: string;
   bloodGroup: "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "O+" | "O-";
   presentAddress: string;
   permanentAddress: string;

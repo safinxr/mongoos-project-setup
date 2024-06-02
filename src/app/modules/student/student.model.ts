@@ -9,7 +9,7 @@ import {
 
 // creating Schema
 const userNameSchema = new Schema<UserName>({
-  fastName: { type: String, required:true},
+  firstName: { type: String, required:true},
   middleName: { type: String },
   lastName: {
     type: String,
@@ -27,7 +27,7 @@ const guardianSchema = new Schema<Guardian>({
     type: String,
     required: [true, "Father's occupation is required"],
   },
-  fatherContactNO: {
+  fatherContactNo: {
     type: String,
     required: [true, "Father's contact number is required"],
   },
@@ -36,7 +36,7 @@ const guardianSchema = new Schema<Guardian>({
     type: String,
     required: [true, "Mother's occupation is required"],
   },
-  motherContactNO: {
+  motherContactNo: {
     type: String,
     required: [true, "Mother's contact number is required"],
   },
@@ -48,7 +48,7 @@ const localGuardianSchema = new Schema<LocalGuardian>({
     type: String,
     required: [true, "Local guardian's occupation is required"],
   },
-  contactNO: {
+  contactNo: {
     type: String,
     required: [true, "Local guardian's contact number is required"],
   },
@@ -83,12 +83,12 @@ const studentSchema = new Schema<Student>({
       message:"not an email"
     }
   },
-  contactNO: {
+  contactNo: {
     type: String,
     required: [true, "Contact number is required"],
     maxLength: [11, "number cant be more then 11"],
   },
-  emergencyContactNO: {
+  emergencyContactNo: {
     type: String,
     required: [true, "Emergency contact number is required"],
   },
