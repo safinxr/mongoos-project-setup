@@ -1,7 +1,8 @@
-import express, { Application, Request, Response } from "express";
+import express, { Application, Request, Response, NextFunction } from "express";
 import cors from "cors";
 import { studentRoute } from "./app/modules/student/student.route";
 import { userRoute } from "./app/modules/users/user.route";
+import { request } from "http";
 const app: Application = express();
 
 // parsers
@@ -15,6 +16,24 @@ app.use("/api/v1/users", userRoute);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
+});
+
+
+
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  const message = err.message || "Something went wrong";
+  return res.status(500).json({
+    success: false,
+    message,
+    error: err,
+  });
+});
+
+app.all("*", (req: Request, res: Response) => {
+  res.status(400).json({
+    success:false,
+    message:"API Not Found"
+  });
 });
 
 export default app;

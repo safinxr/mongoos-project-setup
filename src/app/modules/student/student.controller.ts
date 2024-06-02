@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { studentServices } from "./student.service";
 import { z } from "zod";
 import studentValidationSchema from "./student.validation";
 
-const createStudent = async (req: Request, res: Response) => {
+const createStudent = async (req: Request, res: Response, next:NextFunction) => {
   try {
     const { student: studentData } = req.body;
     // const zodValidation = studentValidationSchema.parse(studentData)
@@ -14,16 +14,15 @@ const createStudent = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err) {
-    console.log(err);
-    res.status(500).json({
-      success: false,
-      message: "Student creation unsuccessfully",
-      data: err,
-    });
+   next(err)
   }
 };
 
-const getAllStudent = async (req: Request, res: Response) => {
+const getAllStudent = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const result = await studentServices.getAllStudentFromBD();
     res.status(200).json({
@@ -32,11 +31,15 @@ const getAllStudent = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err) {
-    console.log(err);
+    next(err)
   }
 };
 
-const getSingleStudent = async (req: Request, res: Response) => {
+const getSingleStudent = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const id = req.params.id;
     const result = await studentServices.getSingleStudentFromBD(id);
@@ -46,7 +49,7 @@ const getSingleStudent = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err) {
-    console.log(err);
+   next(err)
   }
 };
 
