@@ -1,8 +1,6 @@
 import express, { Application, Request, Response, NextFunction } from "express";
 import cors from "cors";
-import { studentRoute } from "./app/modules/student/student.route";
-import { userRoute } from "./app/modules/users/user.route";
-import { request } from "http";
+import mainRouter from "./app/router";
 const app: Application = express();
 
 // parsers
@@ -11,8 +9,7 @@ app.use(cors());
 
 // application router
 
-app.use("/api/v1/students", studentRoute);
-app.use("/api/v1/users", userRoute);
+app.use("/api/v1", mainRouter);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
